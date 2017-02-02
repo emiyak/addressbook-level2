@@ -6,7 +6,7 @@ public class AddressPostalCode {
 	
 	private String value;
 	
-	public AddressPostalCode(String code) throws IllegalValueException {
+	public AddressPostalCode(String code){
         this.value = code.trim();      
     }
 	public String toString() {
