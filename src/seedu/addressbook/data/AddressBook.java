@@ -1,4 +1,5 @@
 package seedu.addressbook.data;
+import java.util.*;
 
 import seedu.addressbook.data.person.*;
 import seedu.addressbook.data.person.UniquePersonList.*;
@@ -22,13 +23,14 @@ public class AddressBook {
 
     private final UniquePersonList allPersons;
     private final UniqueTagList allTags; // can contain tags not attached to any person
-
+    private final List<Tagging> taggings;
     /**
      * Creates an empty address book.
      */
     public AddressBook() {
         allPersons = new UniquePersonList();
         allTags = new UniqueTagList();
+        taggings=new ArrayList<Tagging>();
     }
 
     /**
@@ -41,6 +43,7 @@ public class AddressBook {
     public AddressBook(UniquePersonList persons, UniqueTagList tags) {
         this.allPersons = new UniquePersonList(persons);
         this.allTags = new UniqueTagList(tags);
+        taggings=new ArrayList<Tagging>();
         for (Person p : allPersons) {
             syncTagsWithMasterList(p);
         }
@@ -151,4 +154,19 @@ public class AddressBook {
                         && this.allPersons.equals(((AddressBook) other).allPersons)
                         && this.allTags.equals(((AddressBook) other).allTags));
     }
+    public void addTagging (Person person, Tag tag){
+        taggings.add(new Tagging (person, tag,true));
+    }
+    
+
+    public void deleteTagging (Person person, Tag tag){
+        taggings.add(new Tagging (person, tag,false));
+    }
+    
+
+    public void printTaggings (){
+        for (Tagging tagging : taggings){
+            System.out.println(tagging);
+    }
+  }
 }
